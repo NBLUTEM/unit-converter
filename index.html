@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precision Converter | Engineering Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>UNIT<span class="accent">CONVERT</span></h1>
+            <p>Professional Grade Engineering Utility</p>
+        </header>
+
+        <main class="converter-card">
+            <div class="input-group">
+                <label for="category">Category</label>
+                <select id="category">
+                    <option value="length">Length</option>
+                    <option value="mass">Mass</option>
+                    <option value="temp">Temperature</option>
+                </select>
+            </div>
+
+            <div class="conversion-grid">
+                <div class="input-field">
+                    <input type="number" id="inputValue" placeholder="0.00">
+                    <select id="fromUnit"></select>
+                </div>
+                
+                <div class="equals">=</div>
+
+                <div class="input-field">
+                    <input type="text" id="resultValue" readonly placeholder="Result">
+                    <select id="toUnit"></select>
+                </div>
+            </div>
+
+            <button id="convertBtn" class="btn-primary">CONVERT & SAVE</button>
+        </main>
+
+        <section class="history">
+            <h3>Recent Conversions</h3>
+            <ul id="historyList"></ul>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
