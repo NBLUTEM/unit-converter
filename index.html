@@ -3,46 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineering Unit Pro</title>
+    <title>Engineering Unit Converter</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>UNIT<span class="accent">PRO</span></h1>
-            <p>Professional Grade Converter</p>
+            <h1>Engineering <span class="accent">Unit Converter</span></h1>
+            <p>Precision tools for modern engineers.</p>
         </header>
 
-        <main class="converter-card">
-            <label>Category</label>
-            <select id="category">
-                <option value="length">Length</option>
-                <option value="mass">Mass</option>
-                <option value="temp">Temperature</option>
-            </select>
-
-            <div class="conversion-grid">
-                <div class="field">
-                    <input type="number" id="inputValue" placeholder="0.00">
-                    <select id="fromUnit"></select>
-                </div>
-                
-                <div class="divider">=</div>
-
-                <div class="field">
-                    <input type="text" id="resultValue" readonly placeholder="Result">
-                    <select id="toUnit"></select>
-                </div>
+        <div class="card">
+            <div class="tabs">
+                <button class="tab-btn active" data-cat="length">Length</button>
+                <button class="tab-btn" data-cat="mass">Mass</button>
+                <button class="tab-btn" data-cat="temp">Temp</button>
             </div>
 
-            <button id="convertBtn" class="btn-primary">CONVERT & SAVE</button>
-        </main>
+            <div class="input-section">
+                <label>FROM</label>
+                <input type="number" id="inputValue" value="0">
+                <select id="fromUnit"></select>
+            </div>
 
-        <section class="history-section">
-            <h3>Recent Conversions</h3>
+            <div class="swap-icon">⇄</div>
+
+            <div class="input-section">
+                <label>TO</label>
+                <input type="text" id="resultValue" readonly value="0">
+                <select id="toUnit"></select>
+            </div>
+
+            <button id="convertBtn" class="main-btn">Convert</button>
+        </div>
+
+        <div class="history">
+            <h3>Recent History</h3>
             <ul id="historyList"></ul>
-        </section>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

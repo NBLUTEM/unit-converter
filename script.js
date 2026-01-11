@@ -4,7 +4,9 @@ const units = {
     temp: { "Celsius": "C", "Fahrenheit": "F", "Kelvin": "K" }
 };
 
-const category = document.getElementById('category');
+let currentCategory = 'length';
+
+const tabBtns = document.querySelectorAll('.tab-btn');
 const fromUnit = document.getElementById('fromUnit');
 const toUnit = document.getElementById('toUnit');
 const inputValue = document.getElementById('inputValue');
@@ -12,33 +14,38 @@ const resultValue = document.getElementById('resultValue');
 const convertBtn = document.getElementById('convertBtn');
 const historyList = document.getElementById('historyList');
 
-function updateUnits() {
-    const options = Object.keys(units[category.value]);
+// Switch Categories
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.dataset.cat;
+        populateDropdowns();
+    });
+});
+
+function populateDropdowns() {
+    const options = Object.keys(units[currentCategory]);
     fromUnit.innerHTML = options.map(u => `<option value="${u}">${u}</option>`).join('');
     toUnit.innerHTML = options.map(u => `<option value="${u}">${u}</option>`).join('');
 }
 
 function convert() {
     const val = parseFloat(inputValue.value);
-    if (isNaN(val)) {
-        alert("Enter a number!");
-        return;
-    }
+    if (isNaN(val)) return;
 
-    const cat = category.value;
     const from = fromUnit.value;
     const to = toUnit.value;
     let result;
 
-    if (cat === 'temp') {
+    if (currentCategory === 'temp') {
         result = convertTemp(val, from, to);
     } else {
-        // Correct logic: Value / FromRate * ToRate
-        result = (val / units[cat][from]) * units[cat][to];
+        result = (val / units[currentCategory][from]) * units[currentCategory][to];
     }
 
-    resultValue.value = result.toFixed(4);
-    saveHistory(`${val} ${from} = ${result.toFixed(2)} ${to}`);
+    resultValue.value = result.toFixed(2);
+    addHistory(`${val} ${from} = ${result.toFixed(2)} ${to}`);
 }
 
 function convertTemp(v, f, t) {
@@ -53,15 +60,14 @@ function convertTemp(v, f, t) {
     return c + 273.15;
 }
 
-function saveHistory(text) {
+function addHistory(text) {
     const li = document.createElement('li');
     li.textContent = text;
     historyList.prepend(li);
     if (historyList.children.length > 5) historyList.lastChild.remove();
 }
 
-category.addEventListener('change', updateUnits);
 convertBtn.addEventListener('click', convert);
 
-// Run immediately to set up dropdowns
-updateUnits();
+// Init
+populateDropdowns();
