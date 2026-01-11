@@ -1,0 +1,89 @@
+:root {
+    /* A deep Midnight Purple instead of boring black */
+    --bg: #0f0a1f; 
+    /* A slightly lighter purple for cards */
+    --card: #1c1433;
+    /* A bright, cheerful Neon Pink/Magenta */
+    --accent: #ff007f;
+    /* A vibrant Electric Cyan for contrast */
+    --secondary: #00f2ff;
+    --text: #ffffff;
+    --input-bg: #2d224d;
+}
+
+body {
+    background-color: var(--bg);
+    /* Adding a subtle radial glow to the background for depth */
+    background: radial-gradient(circle at top right, #1e1040, #0f0a1f);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 50px 20px;
+    min-height: 100vh;
+}
+
+h1 { 
+    font-weight: 900; 
+    font-size: 3rem; 
+    letter-spacing: -2px; 
+    margin: 0;
+    text-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+}
+
+.accent { 
+    color: var(--accent); 
+    /* This makes the word "PRO" glow */
+    text-shadow: 0 0 10px var(--accent);
+}
+
+.converter-card {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Glassmorphism effect */
+    backdrop-filter: blur(10px);
+}
+
+label { 
+    color: var(--secondary); /* Cyan labels for cheerfulness */
+    letter-spacing: 1px;
+}
+
+select, input {
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+select:focus, input:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--accent), #ff4d00);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 0, 127, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(255, 0, 127, 0.6);
+}
+
+li {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid var(--secondary);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
